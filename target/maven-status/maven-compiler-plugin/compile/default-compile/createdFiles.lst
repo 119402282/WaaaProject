@@ -3,12 +3,12 @@ servlets\LoginServlet.class
 service\UserService.class
 servlets\CartServlet.class
 utils\StringUtils.class
+utils\SetupDbListener.class
 servlets\ProductsPageServlet.class
 model\Product.class
 dao\UserDAO.class
 utils\IConstants.class
 service\ProductService.class
-utils\DBCreationRunner.class
 utils\DBManager.class
 model\Item.class
 servlets\productgetter.class

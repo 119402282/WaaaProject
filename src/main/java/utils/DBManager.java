@@ -17,34 +17,26 @@ import java.util.logging.Logger;
  */
 public class DBManager {
 
-    Logger logger = Logger.getLogger(DBManager.class.getName());
+    String strUrl = "jdbc:derby://localhost:1527/dorgan;create=true";
+    private static Connection conn;
+    private static final DBManager db = new DBManager();
+    
 
     public DBManager() {
         
         try {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
+            conn = DriverManager.getConnection(strUrl,"conor","password");
+            System.out.println("Schema: "+conn.getSchema());
+
         } catch (ClassNotFoundException ex) {
-            logger.log(Level.SEVERE, null, ex);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DBManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    }
-    
-   
-
-    public Connection getConnection() {
-
-
-        Connection dbConnection = null;
-        //String strUrl = "jdbc:derby:bills-product-db;create=true";
-        String strUrl = "jdbc:derby://localhost:1527/dorgan;create=true";
-        try {
-            dbConnection = DriverManager.getConnection(strUrl,"conor","password");
-        } catch (SQLException sqle) {
-            logger.log(Level.SEVERE, null, sqle.getStackTrace());
-        }
-
-        return dbConnection;
-
     }
 
+    public static Connection getConnection() {
+        return conn;
+    }
 }
